@@ -5,22 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Best Sellers - Featured Collection</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'source': ['"Source Serif 4"', 'serif'],
+                        'bebas': ['"Bebas Neue"', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Poppins:wght@400;500&family=Source+Serif+4:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Poppins:wght@400;600&family=Source+Serif+4:wght@900&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        h1 {
-            font-family: 'Source Serif 4', serif;
-            font-weight: 900;
-        }
-        .font-bebas {
-            font-family: 'Bebas Neue', cursive;
-        }
-        
-        /* Custom scrollbar styles */
         .custom-scrollbar {
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none; /* IE and Edge */
@@ -30,74 +31,53 @@
             display: none; /* Chrome, Safari and Opera */
         }
         
-        /* Custom scrollbar track */
-        .scrollbar-track {
-            height: 4px;
-            background: #e5e7eb;
-            position: relative;
-            margin-top: 2rem;
-            border-radius: 9999px;
-        }
-        
-        /* Custom scrollbar thumb */
         .scrollbar-thumb {
-            height: 4px;
-            background: #000;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            border-radius: 9999px;
-            cursor: pointer;
             will-change: transform;
-            transform: translateY(-50%) translateX(0);
             pointer-events: auto;
-            transition: height 200ms ease-out;
         }
         
-        .scrollbar-track:hover .scrollbar-thumb,
+        .group:hover .scrollbar-thumb,
         .scrollbar-thumb:active {
             height: 8px;
         }
     </style>
 </head>
-<body class="">
+<body class="font-poppins">
     <!-- Desktop View -->
-    <main class="hidden md:block py-12">
-        <div class="container mx-auto">
-            <header class="flex justify-between items-center mb-8">
-                <h1 class="text-4xl font-bold">Best Sellers</h1>
-                <nav>
-                    <a href="#" class="text-gray-600 hover:text-gray-900 flex items-center gap-2">
-                        Shop All Best Sellers
-                        <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-                        </svg>
-                    </a>
-                </nav>
-            </header>
-        </div>
+    <main class="hidden md:block">
+        <header class="flex justify-between items-center mb-8 px-32 mt-[60px]">
+            <h1 class="text-[40px] font-source font-black">Best Sellers</h1>
+            <nav>
+                <a href="#" class="text-gray-600 hover:text-gray-900 flex items-center gap-2 font-semibold text-sm tracking-[0.03em]">
+                    Shop All Best Sellers
+                    <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 16 12" aria-hidden="true">
+                        <path d="M1 6H11M11 6L6 1M11 6L6 11" stroke="#5C553A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </nav>
+        </header>
 
         <!-- Desktop Scrollview Container -->
-        <section class="relative pl-4 lg:pl-32" aria-label="Product carousel">
+        <section class="relative pl-32" aria-label="Product carousel">
             <div class="flex flex-nowrap overflow-x-auto custom-scrollbar" id="desktop-scrollview" style="overscroll-behavior-x: contain;" role="region" aria-label="Scrollable product list">
                 <!-- Product Cards -->
                 <article class="flex-none w-[355px] mr-4">
                     <div class="rounded-[10px] overflow-hidden">
                         <figure class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]" aria-label="Best seller badge">BEST SELLER</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]" aria-label="Best seller badge">BEST SELLER</span>
                             <img src="assets/c-d-x-PDX_a_82obo-unsplash 1.jpg" alt="Outside Vibes T-Shirt in Sunshine color" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </figure>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">OUTSIDE VIBES T-SHIRT SUNSHINE</h3>
                             <div class="flex items-center gap-1 mb-2" role="img" aria-label="4 out of 5 stars rating">
                                 <div class="flex gap-0.5" aria-hidden="true">
-                                    <img src="assets/star-01.svg" alt="" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="" class="w-3 h-3 opacity-50">
+                                    <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px] opacity-50">
                                 </div>
-                                <span class="text-xs text-gray-500">1,234 Reviews</span>
+                                <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                             </div>
                             <p class="font-bold">$104.95</p>
                         </div>
@@ -107,21 +87,21 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
-                            <span class="absolute top-4 right-4 bg-[#5C7962] text-white text-xs font-bebas px-3 py-1 rounded-full tracking-[0.06em]">SAVE 15%</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bebas px-3 py-1 rounded-full tracking-[0.06em] border border-black">SAVE 15%</span>
                             <img src="assets/giorgio-trovato-K62u25Jk6vo-unsplash 1.jpg" alt="Sunglasses" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">HIKE BOTTLE OUTSIDE VIBES FOREST GREEN</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                                 </div>
-                                <span class="text-xs text-gray-500">1,234 Reviews</span>
+                                <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                             </div>
                             <p class="font-bold">$104.95</p>
                         </div>
@@ -131,20 +111,20 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
                             <img src="assets/imani-bahati-LxVxPA1LOVM-unsplash 1.jpg" alt="Sneakers" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">REST IN NATURE T-SHIRT CHARCOAL</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                                 </div>
-                                <span class="text-xs text-gray-500">1,234 Reviews</span>
+                                <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                             </div>
                             <p class="font-bold">$104.95</p>
                         </div>
@@ -154,20 +134,20 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
                             <img src="assets/charlesdeluvio-1-nx1QR5dTE-unsplash 1.jpg" alt="Banana" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">OUTSIDE VIBES CAP FOREST GREEN</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                                 </div>
-                                <span class="text-xs text-gray-500">1,234 Reviews</span>
+                                <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                             </div>
                             <p class="font-bold">$104.95</p>
                         </div>
@@ -177,21 +157,21 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
-                            <span class="absolute top-4 right-4 bg-[#5C7962] text-white text-xs font-bold px-3 py-1 rounded-full">SAVE 15%</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bold px-3 py-1 rounded-full border border-black">SAVE 15%</span>
                             <img src="assets/domino-studio-164_6wVEHfI-unsplash 1.jpg" alt="Car" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">REST IN NATURE T-SHIRT CHARCOAL</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                                 </div>
-                                <span class="text-xs text-gray-500">1,234 Reviews</span>
+                                <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                             </div>
                             <p class="font-bold">$104.95</p>
                         </div>
@@ -201,20 +181,20 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
                             <img src="assets/curology-t_ua25SR8mg-unsplash 1.jpg" alt="Product" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">ADVENTURE READY BACKPACK</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                                 </div>
-                                <span class="text-xs text-gray-500">987 Reviews</span>
+                                <span class="text-[11px] text-gray-500">987 Reviews</span>
                             </div>
                             <p class="font-bold">$89.95</p>
                         </div>
@@ -224,21 +204,21 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas bg-white border border-black tracking-[0.06em]">BEST SELLER</span>
-                            <span class="absolute top-4 right-4 bg-[#5C7962] text-white text-xs font-bold px-3 py-1 rounded-full">SAVE 20%</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas bg-white border border-black tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bold px-3 py-1 rounded-full">SAVE 20%</span>
                             <img src="assets/devin-avery-bMH8ub9z1_U-unsplash 1.jpg" alt="Product" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">WANDERLUST TRAVEL MUG</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3 opacity-50">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px] opacity-50">
                                 </div>
-                                <span class="text-xs text-gray-500">756 Reviews</span>
+                                <span class="text-[11px] text-gray-500">756 Reviews</span>
                             </div>
                             <p class="font-bold">$34.95</p>
                         </div>
@@ -248,20 +228,20 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
                             <img src="assets/gabrielle-henderson-1DMNn6gBbwQ-unsplash 1.jpg" alt="Product" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">SUNSET VIBES HOODIE</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                                 </div>
-                                <span class="text-xs text-gray-500">2,103 Reviews</span>
+                                <span class="text-[11px] text-gray-500">2,103 Reviews</span>
                             </div>
                             <p class="font-bold">$78.95</p>
                         </div>
@@ -271,20 +251,20 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full bg-white border border-black font-bebas tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full bg-white border border-black font-bebas tracking-[0.06em]">BEST SELLER</span>
                             <img src="assets/giorgio-trovato-p0OlRAAYXLY-unsplash 1.jpg" alt="Product" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">OCEAN BREEZE SNEAKERS</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3 opacity-50">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px] opacity-50">
                                 </div>
-                                <span class="text-xs text-gray-500">1,567 Reviews</span>
+                                <span class="text-[11px] text-gray-500">1,567 Reviews</span>
                             </div>
                             <p class="font-bold">$124.95</p>
                         </div>
@@ -294,21 +274,21 @@
                 <div class="flex-none w-[355px] px-2">
                         <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
-                            <span class="absolute top-4 right-4 bg-[#5C7962] text-white text-xs font-bold px-3 py-1 rounded-full">SAVE 10%</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bold px-3 py-1 rounded-full">SAVE 10%</span>
                             <img src="assets/glenna-haug-DuNXXPScbJM-unsplash 1.jpg" alt="Product" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">MOUNTAIN TRAIL JACKET</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                                 </div>
-                                <span class="text-xs text-gray-500">892 Reviews</span>
+                                <span class="text-[11px] text-gray-500">892 Reviews</span>
                             </div>
                             <p class="font-bold">$156.95</p>
                         </div>
@@ -318,20 +298,20 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
                             <img src="assets/irene-kredenets-KStSiM1UvPw-unsplash 1.jpg" alt="Product" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">FRESH VIBES WATER BOTTLE</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                                 </div>
-                                <span class="text-xs text-gray-500">3,421 Reviews</span>
+                                <span class="text-[11px] text-gray-500">3,421 Reviews</span>
                             </div>
                             <p class="font-bold">$29.95</p>
                         </div>
@@ -341,21 +321,21 @@
                 <div class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
-                            <span class="absolute top-4 left-4 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em] ">BEST SELLER</span>
-                            <span class="absolute top-4 right-4 bg-[#5C7962] text-white text-xs font-bold px-3 py-1 rounded-full">SAVE 25%</span>
+                            <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em] ">BEST SELLER</span>
+                            <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bold px-3 py-1 rounded-full border border-black">SAVE 15%</span>
                             <img src="assets/kadarius-seegars-Mxy5gokl8mE-unsplash 1.jpg" alt="Product" class="w-[355px] h-[355px] object-cover rounded-[10px]">
                         </div>
                         <div class="p-4">
                             <h3 class="font-bebas text-lg mb-2 tracking-wide">URBAN EXPLORER BACKPACK</h3>
                             <div class="flex items-center gap-1 mb-2">
                                 <div class="flex gap-0.5">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                    <img src="assets/star-01.svg" alt="star" class="w-3 h-3 opacity-50">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                    <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px] opacity-50">
                                 </div>
-                                <span class="text-xs text-gray-500">1,892 Reviews</span>
+                                <span class="text-[11px] text-gray-500">1,892 Reviews</span>
                             </div>
                             <p class="font-bold">$94.95</p>
                         </div>
@@ -365,117 +345,340 @@
         </section>
 
         <!-- Custom Scrollbar -->
-        <nav class="container mx-auto px-4" aria-label="Carousel navigation">
-            <div class="scrollbar-track" role="scrollbar" aria-controls="desktop-scrollview" aria-orientation="horizontal">
-                <div id="scrollbar-thumb" class="scrollbar-thumb" role="slider" aria-label="Scroll position" tabindex="0"></div>
+        <nav class="px-32 mt-12" aria-label="navigation">
+            <div class="h-1 bg-gray-200 relative rounded-full group scrollbar-track" role="scrollbar" aria-controls="desktop-scrollview" aria-orientation="horizontal">
+                <div id="scrollbar-thumb" class="h-1 bg-black absolute top-1/2 left-0 rounded-full cursor-pointer -translate-y-1/2 translate-x-0 transition-[height] duration-200 ease-out scrollbar-thumb" role="slider" aria-label="Scroll position" tabindex="0"></div>
             </div>
         </nav>
     </main>
 
     <!-- Mobile View -->
-    <main class="md:hidden container mx-auto px-4 py-8">
+    <main class="md:hidden container mx-auto px-6 py-8">
         <header>
-            <h1 class="text-3xl font-bold text-center mb-8">Best Sellers</h1>
+            <h1 class="text-3xl font-source font-bold text-center mb-4">Best Sellers</h1>
         </header>
 
         <section class="space-y-6" aria-label="Product grid">
             <!-- Mobile Product Grid -->
-            <div class="grid grid-cols-2 gap-4" role="list">
-                <article class="rounded-[10px] overflow-hidden w-[158px]" role="listitem">
+            <div class="grid grid-cols-2 gap-3" role="list">
+                <article class="rounded-[10px] overflow-hidden w-full" role="listitem">
                     <figure class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-xs font-bold px-2 py-1 rounded-full" aria-label="Best seller badge">BEST SELLER</span>
-                        <img src="assets/c-d-x-PDX_a_82obo-unsplash 1.jpg" alt="Outside Vibes T-Shirt in Sunshine color" class="w-[158px] h-[158px] object-cover rounded-[10px]">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black" aria-label="Best seller badge">BEST SELLER</span>
+                        <img src="assets/c-d-x-PDX_a_82obo-unsplash 1.jpg" alt="Outside Vibes T-Shirt in Sunshine color" class="w-full aspect-square object-cover rounded-[10px]">
                     </figure>
                     <div class="p-3">
-                        <h3 class="font-bebas text-sm mb-2 tracking-wide">OUTSIDE VIBES T-SHIRT SUNSHINE</h3>
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">OUTSIDE VIBES T-SHIRT SUNSHINE</h3>
                         <div class="flex items-center gap-1 mb-2" role="img" aria-label="5 out of 5 stars rating">
                             <div class="flex gap-0.5" aria-hidden="true">
-                                <img src="assets/star-01.svg" alt="" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="" class="w-3 h-3">
+                                <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="" class="w-[9px] h-[9px]">
                             </div>
-                            <span class="text-xs text-gray-500">1,234 Reviews</span>
+                            <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                         </div>
                         <p class="font-bold text-lg">$104.95</p>
                     </div>
                 </article>
 
-                <div class="rounded-[10px] overflow-hidden w-[158px]">
+                <div class="rounded-[10px] overflow-hidden w-full">
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-xs font-bold px-2 py-1 rounded-full">BEST SELLER</span>
-                        <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bold px-2 py-1 rounded-full">SAVE 15%</span>
-                        <img src="assets/giorgio-trovato-K62u25Jk6vo-unsplash 1.jpg" alt="Sunglasses" class="w-[158px] h-[158px] object-cover rounded-[10px]">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">SAVE 15%</span>
+                        <img src="assets/giorgio-trovato-K62u25Jk6vo-unsplash 1.jpg" alt="Sunglasses" class="w-full aspect-square object-cover rounded-[10px]">
                     </div>
                     <div class="p-3">
-                        <h3 class="font-bebas text-sm mb-2 tracking-wide">HIKE BOTTLE OUTSIDE VIBES</h3>
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">HIKE BOTTLE OUTSIDE VIBES</h3>
                         <div class="flex items-center gap-1 mb-2">
                             <div class="flex gap-0.5">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                             </div>
-                            <span class="text-xs text-gray-500">1,234 Reviews</span>
+                            <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                         </div>
                         <p class="font-bold text-lg">$104.95</p>
                     </div>
                 </div>
 
-                <div class="rounded-[10px] overflow-hidden w-[158px]">
+                <div class="rounded-[10px] overflow-hidden w-full">
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-xs font-bold px-2 py-1 rounded-full">BEST SELLER</span>
-                        <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bold px-2 py-1 rounded-full">SAVE 15%</span>
-                        <img src="assets/imani-bahati-LxVxPA1LOVM-unsplash 1.jpg" alt="Sneakers" class="w-[158px] h-[158px] object-cover rounded-[10px]">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">SAVE 15%</span>
+                        <img src="assets/imani-bahati-LxVxPA1LOVM-unsplash 1.jpg" alt="Sneakers" class="w-full aspect-square object-cover rounded-[10px]">
                     </div>
                     <div class="p-3">
-                        <h3 class="font-bebas text-sm mb-2 tracking-wide">REST IN NATURE T-SHIRT CHARCOAL</h3>
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">REST IN NATURE T-SHIRT CHARCOAL</h3>
                         <div class="flex items-center gap-1 mb-2">
                             <div class="flex gap-0.5">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                             </div>
-                            <span class="text-xs text-gray-500">1,234 Reviews</span>
+                            <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                         </div>
                         <p class="font-bold text-lg">$104.95</p>
                     </div>
                 </div>
 
-                <div class="rounded-[10px] overflow-hidden w-[158px]">
+                <div class="rounded-[10px] overflow-hidden w-full">
                     <div class="relative">
-                        <span class="absolute top-2 left-2 bg-white text-xs font-bold px-2 py-1 rounded-full">BEST SELLER</span>
-                        <img src="assets/charlesdeluvio-1-nx1QR5dTE-unsplash 1.jpg" alt="Banana" class="w-[158px] h-[158px] object-cover rounded-[10px]">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <img src="assets/charlesdeluvio-1-nx1QR5dTE-unsplash 1.jpg" alt="Banana" class="w-full aspect-square object-cover rounded-[10px]">
                     </div>
                     <div class="p-3">
-                        <h3 class="font-bebas text-sm mb-2 tracking-wide">OUTSIDE VIBES CAP FOREST GREEN</h3>
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">OUTSIDE VIBES CAP FOREST GREEN</h3>
                         <div class="flex items-center gap-1 mb-2">
                             <div class="flex gap-0.5">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
-                                <img src="assets/star-01.svg" alt="star" class="w-3 h-3">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
                             </div>
-                            <span class="text-xs text-gray-500">1,234 Reviews</span>
+                            <span class="text-[11px] text-gray-500">1,234 Reviews</span>
                         </div>
                         <p class="font-bold text-lg">$104.95</p>
+                    </div>
+                </div>
+
+                <!-- Hidden products - revealed on Show More -->
+                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">SAVE 15%</span>
+                        <img src="assets/domino-studio-164_6wVEHfI-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">REST IN NATURE T-SHIRT</h3>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="flex gap-0.5">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                            </div>
+                            <span class="text-[11px] text-gray-500">1,234 Reviews</span>
+                        </div>
+                        <p class="font-bold text-lg">$104.95</p>
+                    </div>
+                </div>
+
+                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <img src="assets/curology-t_ua25SR8mg-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">ADVENTURE READY BACKPACK</h3>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="flex gap-0.5">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                            </div>
+                            <span class="text-[11px] text-gray-500">987 Reviews</span>
+                        </div>
+                        <p class="font-bold text-lg">$89.95</p>
+                    </div>
+                </div>
+
+                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em]">SAVE 20%</span>
+                        <img src="assets/devin-avery-bMH8ub9z1_U-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">WANDERLUST TRAVEL MUG</h3>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="flex gap-0.5">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px] opacity-50">
+                            </div>
+                            <span class="text-[11px] text-gray-500">756 Reviews</span>
+                        </div>
+                        <p class="font-bold text-lg">$34.95</p>
+                    </div>
+                </div>
+
+                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <img src="assets/gabrielle-henderson-1DMNn6gBbwQ-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">SUNSET VIBES HOODIE</h3>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="flex gap-0.5">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                            </div>
+                            <span class="text-[11px] text-gray-500">2,103 Reviews</span>
+                        </div>
+                        <p class="font-bold text-lg">$78.95</p>
+                    </div>
+                </div>
+
+                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <img src="assets/giorgio-trovato-p0OlRAAYXLY-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">OCEAN BREEZE SNEAKERS</h3>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="flex gap-0.5">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px] opacity-50">
+                            </div>
+                            <span class="text-[11px] text-gray-500">1,567 Reviews</span>
+                        </div>
+                        <p class="font-bold text-lg">$124.95</p>
+                    </div>
+                </div>
+
+                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em]">SAVE 10%</span>
+                        <img src="assets/glenna-haug-DuNXXPScbJM-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">MOUNTAIN TRAIL JACKET</h3>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="flex gap-0.5">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                            </div>
+                            <span class="text-[11px] text-gray-500">892 Reviews</span>
+                        </div>
+                        <p class="font-bold text-lg">$156.95</p>
+                    </div>
+                </div>
+
+                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <img src="assets/irene-kredenets-KStSiM1UvPw-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">FRESH VIBES WATER BOTTLE</h3>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="flex gap-0.5">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                            </div>
+                            <span class="text-[11px] text-gray-500">3,421 Reviews</span>
+                        </div>
+                        <p class="font-bold text-lg">$29.95</p>
+                    </div>
+                </div>
+
+                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                    <div class="relative">
+                        <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
+                        <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">SAVE 15%</span>
+                        <img src="assets/kadarius-seegars-Mxy5gokl8mE-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem]">URBAN EXPLORER BACKPACK</h3>
+                        <div class="flex items-center gap-1 mb-2">
+                            <div class="flex gap-0.5">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px]">
+                                <img src="assets/star-01.svg" alt="star" class="w-[9px] h-[9px] opacity-50">
+                            </div>
+                            <span class="text-[11px] text-gray-500">1,892 Reviews</span>
+                        </div>
+                        <p class="font-bold text-lg">$94.95</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Show More Button -->
-        <button class="w-full bg-black text-white py-4 rounded-full font-semibold mt-8 hover:bg-gray-800" aria-label="Load more products">
-            Show More
+        <button id="show-more-btn" class="w-full bg-black text-white py-4 rounded-full font-semibold mt-3 hover:bg-gray-800 transition-all duration-300" aria-label="Load more products">
+            <span class="show-text">Show More</span>
+            <span class="hide-text hidden">Show Less</span>
         </button>
     </main>
 
     <script>
+        // Mobile Show More functionality
+        const showMoreBtn = document.getElementById('show-more-btn');
+        const moreProducts = document.querySelectorAll('.more-products');
+        const showText = document.querySelector('.show-text');
+        const hideText = document.querySelector('.hide-text');
+        let isExpanded = false;
+
+        if (showMoreBtn) {
+            showMoreBtn.addEventListener('click', () => {
+                isExpanded = !isExpanded;
+                
+                if (isExpanded) {
+                    // Show products with staggered animation
+                    moreProducts.forEach((product, index) => {
+                        setTimeout(() => {
+                            product.classList.remove('hidden');
+                            setTimeout(() => {
+                                product.classList.remove('opacity-0');
+                                product.classList.add('opacity-100', 'translate-y-0');
+                            }, 50);
+                        }, index * 100); // Stagger by 100ms
+                    });
+                    
+                    // Toggle button text
+                    showText.classList.add('hidden');
+                    hideText.classList.remove('hidden');
+                } else {
+                    // Hide products
+                    moreProducts.forEach((product, index) => {
+                        product.classList.add('opacity-0');
+                        product.classList.remove('opacity-100', 'translate-y-0');
+                        setTimeout(() => {
+                            product.classList.add('hidden');
+                        }, 500); // Wait for fade animation
+                    });
+                    
+                    // Toggle button text
+                    showText.classList.remove('hidden');
+                    hideText.classList.add('hidden');
+                    
+                    // Smooth scroll to products section
+                    document.querySelector('.md\\:hidden').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
+
         // Desktop Scrollview with custom scrollbar
         const scrollview = document.getElementById('desktop-scrollview');
         const scrollbarThumb = document.getElementById('scrollbar-thumb');
@@ -495,7 +698,6 @@
             function syncThumbPosition() {
                 const maxScroll = scrollview.scrollWidth - scrollview.clientWidth;
                 if (maxScroll <= 0) {
-                    console.log('No scroll needed, maxScroll:', maxScroll);
                     return;
                 }
                 
@@ -503,11 +705,6 @@
                 const trackWidth = scrollbarTrack.offsetWidth;
                 const maxThumbPos = trackWidth - THUMB_WIDTH;
                 const thumbPos = scrollPercent * maxThumbPos;
-                
-                console.log('Sync thumb - Scroll left:', scrollview.scrollLeft);
-                console.log('Sync thumb - Scroll percent:', scrollPercent);
-                console.log('Sync thumb - Thumb position:', thumbPos);
-                console.log('Sync thumb - Is dragging:', isDragging);
                 
                 scrollbarThumb.style.transform = `translateY(-50%) translateX(${thumbPos}px)`;
             }

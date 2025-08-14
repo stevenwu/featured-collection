@@ -1,15 +1,42 @@
 class FeaturedCollection extends HTMLElement {
+  static ANIMATION_TIMING = {
+    stagger: 100,
+    fadeIn: 300,
+    fadeOut: 500,
+    scrollStep: 10
+  };
+
+  static get observedAttributes() {
+    return ['data-section-id'];
+  }
+
   constructor() {
     super();
-    this.sectionId = this.dataset.sectionId;
+    this.initialized = false;
+    this.sectionId = null;
+    this.isExpanded = false;
+    this.cleanup = () => {};
+  }
+
+  connectedCallback() {
+    if (this.initialized) return;
+    
+    this.initialized = true;
+    this.sectionId = this.dataset.sectionId?.replace(/[^a-zA-Z0-9-_]/g, '') || 'default';
     this.initializeDesktopScroll();
     this.initializeMobileToggle();
   }
 
-  connectedCallback() {
-    // Initialize when element is added to DOM
-    this.initializeDesktopScroll();
-    this.initializeMobileToggle();
+  disconnectedCallback() {
+    this.cleanup();
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (name === 'data-section-id' && oldValue !== newValue) {
+      this.cleanup();
+      this.initialized = false;
+      this.connectedCallback();
+    }
   }
 
   initializeMobileToggle() {
@@ -19,49 +46,50 @@ class FeaturedCollection extends HTMLElement {
     const moreProducts = this.querySelectorAll('.more-products');
     const showText = showMoreBtn.querySelector('.show-text');
     const hideText = showMoreBtn.querySelector('.hide-text');
-    let isExpanded = false;
+    
+    showMoreBtn.setAttribute('aria-expanded', 'false');
+    showMoreBtn.setAttribute('aria-controls', `products-container-${this.sectionId}`);
+    
+    const container = this.querySelector('.grid');
+    if (container) container.id = `products-container-${this.sectionId}`;
 
-    showMoreBtn.addEventListener('click', () => {
-      isExpanded = !isExpanded;
+    const toggle = (e) => {
+      e.preventDefault();
+      this.isExpanded = !this.isExpanded;
+      showMoreBtn.setAttribute('aria-expanded', this.isExpanded);
+      showMoreBtn.setAttribute('aria-live', 'polite');
       
-      if (isExpanded) {
-        // Show products with staggered animation
+      if (this.isExpanded) {
         moreProducts.forEach((product, index) => {
-          setTimeout(() => {
-            product.classList.remove('hidden');
-            setTimeout(() => {
-              product.style.opacity = '1';
-              product.style.transform = 'translateY(0)';
-            }, 50);
-          }, index * 100); // Stagger by 100ms
+          product.classList.remove('hidden');
+          product.style.transition = `opacity ${FeaturedCollection.ANIMATION_TIMING.fadeIn}ms ease`;
+          product.style.transitionDelay = `${index * FeaturedCollection.ANIMATION_TIMING.stagger}ms`;
+          requestAnimationFrame(() => {
+            product.style.opacity = '1';
+          });
         });
-        
-        // Toggle button text
-        showText.classList.add('hidden');
-        hideText.classList.remove('hidden');
-        hideText.classList.add('show');
+        showText?.classList.add('hidden');
+        hideText?.classList.remove('hidden');
       } else {
-        // Hide products
-        moreProducts.forEach((product) => {
+        moreProducts.forEach(product => {
           product.style.opacity = '0';
-          product.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            product.classList.add('hidden');
-          }, 500); // Wait for fade animation
         });
-        
-        // Toggle button text
-        showText.classList.remove('hidden');
-        hideText.classList.add('hidden');
-        hideText.classList.remove('show');
-        
-        // Smooth scroll to section
-        this.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
+        setTimeout(() => {
+          moreProducts.forEach(product => product.classList.add('hidden'));
+        }, FeaturedCollection.ANIMATION_TIMING.fadeOut);
+        showText?.classList.remove('hidden');
+        hideText?.classList.add('hidden');
+        this.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
-    });
+    };
+
+    showMoreBtn.addEventListener('click', toggle);
+    
+    const previousCleanup = this.cleanup;
+    this.cleanup = () => {
+      previousCleanup();
+      showMoreBtn.removeEventListener('click', toggle);
+    };
   }
 
   initializeDesktopScroll() {
@@ -71,164 +99,107 @@ class FeaturedCollection extends HTMLElement {
     
     if (!scrollview || !scrollbarThumb || !scrollbarTrack) return;
 
-    // Fixed values
-    const THUMB_WIDTH = 480;
+    const thumbWidth = 480;
+    scrollbarThumb.style.width = thumbWidth + 'px';
+    scrollbarThumb.setAttribute('tabindex', '0');
+    scrollbarThumb.setAttribute('role', 'scrollbar');
+    scrollbarThumb.setAttribute('aria-orientation', 'horizontal');
     
-    // State
-    let isDragging = false;
-    let rafId = null;
-    
-    // Set thumb width once
-    scrollbarThumb.style.width = THUMB_WIDTH + 'px';
-    
-    function syncThumbPosition() {
+    const syncThumbPosition = () => {
       const maxScroll = scrollview.scrollWidth - scrollview.clientWidth;
-      if (maxScroll <= 0) {
-        scrollbarThumb.style.display = 'none';
-        return;
-      }
-      
       scrollbarThumb.style.display = 'block';
       const scrollPercent = scrollview.scrollLeft / maxScroll;
-      const trackWidth = scrollbarTrack.offsetWidth;
-      const maxThumbPos = trackWidth - THUMB_WIDTH;
-      const thumbPos = Math.max(0, Math.min(scrollPercent * maxThumbPos, maxThumbPos));
+      const maxThumbPos = scrollbarTrack.offsetWidth - thumbWidth;
+      const thumbPos = scrollPercent * maxThumbPos;
       
       scrollbarThumb.style.transform = `translateY(-50%) translateX(${thumbPos}px)`;
-    }
+      scrollbarThumb.setAttribute('aria-valuenow', Math.round(scrollPercent * 100));
+    };
     
-    let ticking = false;
-    scrollview.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          syncThumbPosition();
-          ticking = false;
-        });
-        ticking = true;
+    let rafId = null;
+    const handleScroll = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(syncThumbPosition);
+    };
+    
+    scrollview.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Keyboard navigation
+    const handleKeydown = (e) => {
+      const step = e.shiftKey ? scrollview.clientWidth * 0.1 : FeaturedCollection.ANIMATION_TIMING.scrollStep;
+      const actions = {
+        'ArrowLeft': () => scrollview.scrollLeft -= step,
+        'ArrowRight': () => scrollview.scrollLeft += step,
+        'Home': () => scrollview.scrollLeft = 0,
+        'End': () => scrollview.scrollLeft = scrollview.scrollWidth
+      };
+      
+      if (actions[e.key]) {
+        e.preventDefault();
+        actions[e.key]();
       }
-    }, { passive: true });
+    };
+    
+    scrollbarThumb.addEventListener('keydown', handleKeydown);
     
     // Drag handling
-    scrollbarThumb.addEventListener('mousedown', (e) => {
+    const initDrag = (e) => {
       e.preventDefault();
-      e.stopPropagation();
-      isDragging = true;
-      
       const startX = e.clientX;
-      const thumbRect = scrollbarThumb.getBoundingClientRect();
-      const trackRect = scrollbarTrack.getBoundingClientRect();
-      const startThumbLeft = thumbRect.left - trackRect.left;
+      const startScrollLeft = scrollview.scrollLeft;
+      const trackWidth = scrollbarTrack.offsetWidth - thumbWidth;
       
-      function onMouseMove(e) {
-        if (!isDragging) return;
-        
+      const handleDrag = (e) => {
         const deltaX = e.clientX - startX;
-        const newThumbLeft = startThumbLeft + deltaX;
-        
-        const trackWidth = scrollbarTrack.offsetWidth;
-        const maxThumbPos = trackWidth - THUMB_WIDTH;
-        
-        // Constrain thumb position
-        const constrainedLeft = Math.max(0, Math.min(newThumbLeft, maxThumbPos));
-        
-        // Calculate scroll position from thumb position
-        const scrollPercent = constrainedLeft / maxThumbPos;
+        const scrollRatio = deltaX / trackWidth;
         const maxScroll = scrollview.scrollWidth - scrollview.clientWidth;
-        const newScrollLeft = scrollPercent * maxScroll;
-        
-        // Update scroll position directly (thumb will follow via scroll event)
-        scrollview.scrollLeft = newScrollLeft;
-      }
+        scrollview.scrollLeft = startScrollLeft + (scrollRatio * maxScroll);
+      };
       
-      function onMouseUp() {
-        isDragging = false;
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-      }
+      const stopDrag = () => {
+        document.removeEventListener('mousemove', handleDrag);
+        document.removeEventListener('mouseup', stopDrag);
+      };
       
-      document.addEventListener('mousemove', onMouseMove);
-      document.addEventListener('mouseup', onMouseUp);
-    });
+      document.addEventListener('mousemove', handleDrag);
+      document.addEventListener('mouseup', stopDrag);
+    };
     
-    // Click on track to jump
-    scrollbarTrack.addEventListener('click', (e) => {
-      // Only process clicks on the track itself, not the thumb
+    scrollbarThumb.addEventListener('mousedown', initDrag);
+    
+    // Track click
+    const handleTrackClick = (e) => {
       if (e.target !== scrollbarTrack) return;
       
       const rect = scrollbarTrack.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
-      const trackWidth = scrollbarTrack.offsetWidth;
-      const scrollWidth = scrollview.scrollWidth - scrollview.clientWidth;
-      
-      // Center thumb on click position
-      let thumbX = clickX - (THUMB_WIDTH / 2);
-      thumbX = Math.max(0, Math.min(thumbX, trackWidth - THUMB_WIDTH));
-      
-      const scrollPercent = thumbX / (trackWidth - THUMB_WIDTH);
-      scrollview.scrollLeft = scrollPercent * scrollWidth;
-    });
+      const scrollPercent = clickX / scrollbarTrack.offsetWidth;
+      scrollview.scrollLeft = scrollPercent * (scrollview.scrollWidth - scrollview.clientWidth);
+    };
     
-    // Keyboard navigation
-    scrollbarThumb.addEventListener('keydown', (e) => {
-      const step = scrollview.clientWidth * 0.1; // 10% of viewport
-      
-      switch(e.key) {
-        case 'ArrowLeft':
-          e.preventDefault();
-          scrollview.scrollLeft -= step;
-          break;
-        case 'ArrowRight':
-          e.preventDefault();
-          scrollview.scrollLeft += step;
-          break;
-        case 'Home':
-          e.preventDefault();
-          scrollview.scrollLeft = 0;
-          break;
-        case 'End':
-          e.preventDefault();
-          scrollview.scrollLeft = scrollview.scrollWidth;
-          break;
-      }
-    });
-    
-    // Initialize position
-    syncThumbPosition();
+    scrollbarTrack.addEventListener('click', handleTrackClick);
     
     // Handle resize
-    window.addEventListener('resize', syncThumbPosition);
+    const handleResize = () => {
+      syncThumbPosition();
+    };
     
-    // Clean up on disconnect
-    this.cleanupDesktopScroll = () => {
-      window.removeEventListener('resize', syncThumbPosition);
+    window.addEventListener('resize', handleResize);
+    syncThumbPosition();
+    
+    const previousCleanup = this.cleanup;
+    this.cleanup = () => {
+      previousCleanup();
+      scrollview.removeEventListener('scroll', handleScroll);
+      scrollbarThumb.removeEventListener('keydown', handleKeydown);
+      scrollbarThumb.removeEventListener('mousedown', initDrag);
+      scrollbarTrack.removeEventListener('click', handleTrackClick);
+      window.removeEventListener('resize', handleResize);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }
-
-  disconnectedCallback() {
-    if (this.cleanupDesktopScroll) {
-      this.cleanupDesktopScroll();
-    }
-  }
 }
 
-// Register the custom element
 if (!customElements.get('featured-collection')) {
   customElements.define('featured-collection', FeaturedCollection);
-}
-
-// Initialize on DOM ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.featured-collection').forEach(section => {
-      if (!section.classList.contains('featured-collection--initialized')) {
-        section.classList.add('featured-collection--initialized');
-      }
-    });
-  });
-} else {
-  document.querySelectorAll('.featured-collection').forEach(section => {
-    if (!section.classList.contains('featured-collection--initialized')) {
-      section.classList.add('featured-collection--initialized');
-    }
-  });
 }

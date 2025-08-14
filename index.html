@@ -43,22 +43,21 @@
     </style>
 </head>
 <body class="font-poppins">
-    <!-- Desktop View -->
-    <main class="hidden md:block">
+    <main>
+        <!-- Desktop View -->
+        <div class="hidden md:block">
         <header class="flex justify-between items-center mb-8 px-32 mt-[60px]">
-            <h1 class="text-[40px] font-source font-black">Best Sellers</h1>
-            <nav>
-                <a href="#" class="text-gray-600 hover:text-gray-900 flex items-center gap-2 font-semibold text-sm tracking-[0.03em]">
-                    Shop All Best Sellers
-                    <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 16 12" aria-hidden="true">
-                        <path d="M1 6H11M11 6L6 1M11 6L6 11" stroke="#5C553A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </nav>
+            <h2 class="text-[40px] font-source font-black">Best Sellers</h2>
+            <a href="#" class="text-gray-600 hover:text-gray-900 flex items-center gap-2 font-semibold text-sm tracking-[0.03em]">
+                Shop All Best Sellers
+                <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 16 12" aria-hidden="true">
+                    <path d="M1 6H11M11 6L6 1M11 6L6 11" stroke="#5C553A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </header>
 
         <!-- Desktop Scrollview Container -->
-        <section class="relative pl-32" aria-label="Product carousel">
+        <section class="relative pl-32" aria-label="Product list">
             <div class="flex flex-nowrap overflow-x-auto custom-scrollbar" id="desktop-scrollview" style="overscroll-behavior-x: contain;" role="region" aria-label="Scrollable product list">
                 <!-- Product Cards -->
                 <article class="flex-none w-[355px] mr-4">
@@ -84,7 +83,7 @@
                     </div>
                 </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
@@ -106,9 +105,9 @@
                             <p class="font-bold">$104.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
@@ -129,9 +128,9 @@
                             <p class="font-bold">$104.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
@@ -152,9 +151,9 @@
                             <p class="font-bold">$104.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
@@ -176,9 +175,9 @@
                             <p class="font-bold">$104.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
@@ -199,9 +198,9 @@
                             <p class="font-bold">$89.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas bg-white border border-black tracking-[0.06em]">BEST SELLER</span>
@@ -223,9 +222,9 @@
                             <p class="font-bold">$34.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
@@ -246,9 +245,9 @@
                             <p class="font-bold">$78.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full bg-white border border-black font-bebas tracking-[0.06em]">BEST SELLER</span>
@@ -269,9 +268,9 @@
                             <p class="font-bold">$124.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                         <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
@@ -293,9 +292,9 @@
                             <p class="font-bold">$156.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]">BEST SELLER</span>
@@ -316,9 +315,9 @@
                             <p class="font-bold">$29.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
 
-                <div class="flex-none w-[355px] px-2">
+                <article class="flex-none w-[355px] px-2">
                     <div class="overflow-hidden">
                         <div class="relative">
                             <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em] ">BEST SELLER</span>
@@ -340,22 +339,25 @@
                             <p class="font-bold">$94.95</p>
                         </div>
                     </div>
-                </div>
+                </article>
+                
+                <!-- Right spacer to match left padding -->
+                <div class="flex-none w-32" aria-hidden="true"></div>
             </div>
         </section>
 
         <!-- Custom Scrollbar -->
-        <nav class="px-32 mt-12" aria-label="navigation">
+        <div class="px-32 mt-12">
             <div class="h-1 bg-gray-200 relative rounded-full group scrollbar-track" role="scrollbar" aria-controls="desktop-scrollview" aria-orientation="horizontal">
                 <div id="scrollbar-thumb" class="h-1 bg-black absolute top-1/2 left-0 rounded-full cursor-pointer -translate-y-1/2 translate-x-0 transition-[height] duration-200 ease-out scrollbar-thumb" role="slider" aria-label="Scroll position" tabindex="0"></div>
             </div>
-        </nav>
-    </main>
+        </div>
+        </div>
 
-    <!-- Mobile View -->
-    <main class="md:hidden container mx-auto px-6 py-8">
+        <!-- Mobile View -->
+        <div class="md:hidden container mx-auto px-6 py-8">
         <header>
-            <h1 class="text-3xl font-source font-bold text-center mb-4">Best Sellers</h1>
+            <h2 class="text-3xl font-source font-bold text-center mb-4">Best Sellers</h2>
         </header>
 
         <section class="space-y-6" aria-label="Product grid">
@@ -382,7 +384,7 @@
                     </div>
                 </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full">
+                <article class="rounded-[10px] overflow-hidden w-full">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">SAVE 15%</span>
@@ -402,9 +404,9 @@
                         </div>
                         <p class="font-bold text-lg">$104.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full">
+                <article class="rounded-[10px] overflow-hidden w-full">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">SAVE 15%</span>
@@ -424,9 +426,9 @@
                         </div>
                         <p class="font-bold text-lg">$104.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full">
+                <article class="rounded-[10px] overflow-hidden w-full">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <img src="assets/charlesdeluvio-1-nx1QR5dTE-unsplash 1.jpg" alt="Banana" class="w-full aspect-square object-cover rounded-[10px]">
@@ -445,10 +447,10 @@
                         </div>
                         <p class="font-bold text-lg">$104.95</p>
                     </div>
-                </div>
+                </article>
 
                 <!-- Hidden products - revealed on Show More -->
-                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                <article class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">SAVE 15%</span>
@@ -468,9 +470,9 @@
                         </div>
                         <p class="font-bold text-lg">$104.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                <article class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <img src="assets/curology-t_ua25SR8mg-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
@@ -489,9 +491,9 @@
                         </div>
                         <p class="font-bold text-lg">$89.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                <article class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em]">SAVE 20%</span>
@@ -511,9 +513,9 @@
                         </div>
                         <p class="font-bold text-lg">$34.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                <article class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <img src="assets/gabrielle-henderson-1DMNn6gBbwQ-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
@@ -532,9 +534,9 @@
                         </div>
                         <p class="font-bold text-lg">$78.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                <article class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <img src="assets/giorgio-trovato-p0OlRAAYXLY-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
@@ -553,9 +555,9 @@
                         </div>
                         <p class="font-bold text-lg">$124.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                <article class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em]">SAVE 10%</span>
@@ -575,9 +577,9 @@
                         </div>
                         <p class="font-bold text-lg">$156.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                <article class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <img src="assets/irene-kredenets-KStSiM1UvPw-unsplash 1.jpg" alt="Product" class="w-full aspect-square object-cover rounded-[10px]">
@@ -596,9 +598,9 @@
                         </div>
                         <p class="font-bold text-lg">$29.95</p>
                     </div>
-                </div>
+                </article>
 
-                <div class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
+                <article class="rounded-[10px] overflow-hidden w-full hidden opacity-0 transition-all duration-500 more-products">
                     <div class="relative">
                         <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">BEST SELLER</span>
                         <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black">SAVE 15%</span>
@@ -618,7 +620,7 @@
                         </div>
                         <p class="font-bold text-lg">$94.95</p>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
@@ -627,9 +629,18 @@
             <span class="show-text">Show More</span>
             <span class="hide-text hidden">Show Less</span>
         </button>
+        </div>
     </main>
 
     <script>
+        // Animation timing constants (in ms)
+        const ANIMATION_TIMING = {
+            stagger: 100,
+            fadeIn: 50,
+            fadeOut: 500,
+            scrollStep: 10
+        };
+
         // Mobile Show More functionality
         const showMoreBtn = document.getElementById('show-more-btn');
         const moreProducts = document.querySelectorAll('.more-products');
@@ -642,41 +653,56 @@
                 isExpanded = !isExpanded;
                 
                 if (isExpanded) {
-                    // Show products with staggered animation
+                    // First, prepare products for animation by making them visible but transparent
                     moreProducts.forEach((product, index) => {
-                        setTimeout(() => {
-                            product.classList.remove('hidden');
-                            setTimeout(() => {
+                        product.classList.remove('hidden');
+                        product.style.transitionDelay = `${index * ANIMATION_TIMING.stagger}ms`;
+                    });
+                    
+                    // Then animate them in with a slight delay for better visual effect
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            moreProducts.forEach((product) => {
                                 product.classList.remove('opacity-0');
-                                product.classList.add('opacity-100', 'translate-y-0');
-                            }, 50);
-                        }, index * 100); // Stagger by 100ms
+                                product.classList.add('opacity-100');
+                            });
+                        });
                     });
                     
                     // Toggle button text
                     showText.classList.add('hidden');
                     hideText.classList.remove('hidden');
                 } else {
-                    // Hide products
-                    moreProducts.forEach((product, index) => {
+                    // Hide products with optimized animation
+                    moreProducts.forEach((product) => {
+                        product.style.transitionDelay = '0ms';
                         product.classList.add('opacity-0');
                         product.classList.remove('opacity-100', 'translate-y-0');
-                        setTimeout(() => {
-                            product.classList.add('hidden');
-                        }, 500); // Wait for fade animation
                     });
+                    
+                    setTimeout(() => {
+                        moreProducts.forEach(product => {
+                            product.classList.add('hidden');
+                        });
+                    }, ANIMATION_TIMING.fadeOut);
                     
                     // Toggle button text
                     showText.classList.remove('hidden');
                     hideText.classList.add('hidden');
                     
-                    // Smooth scroll to products section
-                    document.querySelector('.md\\:hidden').scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    // Smooth scroll to products section with better selector
+                    const mobileSection = document.querySelector('main.md\\:hidden') || 
+                                         document.querySelector('[class*="md:hidden"]');
+                    if (mobileSection) {
+                        mobileSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
             });
+        } else {
+            console.warn('Mobile show more button not found');
         }
 
         // Desktop Scrollview with custom scrollbar
@@ -684,47 +710,105 @@
         const scrollbarThumb = document.getElementById('scrollbar-thumb');
         const scrollbarTrack = document.querySelector('.scrollbar-track');
         
-        if (scrollview && scrollbarThumb && scrollbarTrack) {
-            // Fixed values
-            const THUMB_WIDTH = 480;
+        if (!scrollview || !scrollbarThumb || !scrollbarTrack) {
+            console.warn('Desktop scrollview components not found');
+        } else {
+            // Dynamic thumb width calculation
+            const calculateThumbWidth = () => {
+                const trackWidth = scrollbarTrack.offsetWidth;
+                const scrollRatio = scrollview.clientWidth / scrollview.scrollWidth;
+                return Math.max(100, Math.min(480, trackWidth * scrollRatio));
+            };
+            
+            let THUMB_WIDTH = calculateThumbWidth();
             
             // State
             let isDragging = false;
-            let rafId = null;
+            let scrollRafId = null;
+            let resizeController = null;
             
-            // Set thumb width once
+            // Set initial thumb width and ARIA attributes
             scrollbarThumb.style.width = THUMB_WIDTH + 'px';
+            scrollbarThumb.setAttribute('aria-label', 'Scroll position');
+            scrollbarThumb.setAttribute('aria-valuemin', '0');
+            scrollbarThumb.setAttribute('aria-valuemax', '100');
+            scrollbarThumb.setAttribute('aria-orientation', 'horizontal');
+            scrollbarThumb.setAttribute('role', 'slider');
+            scrollbarThumb.setAttribute('tabindex', '0');
             
             function syncThumbPosition() {
                 const maxScroll = scrollview.scrollWidth - scrollview.clientWidth;
                 if (maxScroll <= 0) {
+                    scrollbarThumb.style.display = 'none';
                     return;
                 }
                 
+                scrollbarThumb.style.display = 'block';
                 const scrollPercent = scrollview.scrollLeft / maxScroll;
                 const trackWidth = scrollbarTrack.offsetWidth;
                 const maxThumbPos = trackWidth - THUMB_WIDTH;
                 const thumbPos = scrollPercent * maxThumbPos;
                 
                 scrollbarThumb.style.transform = `translateY(-50%) translateX(${thumbPos}px)`;
+                
+                // Update ARIA value for accessibility
+                const ariaValue = Math.round(scrollPercent * 100);
+                scrollbarThumb.setAttribute('aria-valuenow', ariaValue);
+                scrollbarThumb.setAttribute('aria-valuetext', `${ariaValue}% scrolled`);
             }
             
-            let ticking = false;
-            scrollview.addEventListener('scroll', () => {
-                if (!ticking) {
-                    requestAnimationFrame(() => {
-                        syncThumbPosition();
-                        ticking = false;
-                    });
-                    ticking = true;
+            // Improved RAF throttling for scroll events
+            const scrollHandler = () => {
+                if (scrollRafId) {
+                    cancelAnimationFrame(scrollRafId);
                 }
-            }, { passive: true });
+                scrollRafId = requestAnimationFrame(() => {
+                    syncThumbPosition();
+                    scrollRafId = null;
+                });
+            };
             
-            // drag handling
+            scrollview.addEventListener('scroll', scrollHandler, { passive: true });
+            
+            // Keyboard navigation support
+            scrollbarThumb.addEventListener('keydown', (e) => {
+                const step = ANIMATION_TIMING.scrollStep;
+                const largeStep = step * 10;
+                
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        scrollview.scrollLeft -= step;
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        scrollview.scrollLeft += step;
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        scrollview.scrollLeft = 0;
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        scrollview.scrollLeft = scrollview.scrollWidth;
+                        break;
+                    case 'PageUp':
+                        e.preventDefault();
+                        scrollview.scrollLeft -= largeStep;
+                        break;
+                    case 'PageDown':
+                        e.preventDefault();
+                        scrollview.scrollLeft += largeStep;
+                        break;
+                }
+            });
+            
+            // Drag handling
             scrollbarThumb.addEventListener('mousedown', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 isDragging = true;
+                scrollbarThumb.setAttribute('aria-pressed', 'true');
                 
                 const startX = e.clientX;
                 const thumbRect = scrollbarThumb.getBoundingClientRect();
@@ -754,6 +838,7 @@
                 
                 function onMouseUp() {
                     isDragging = false;
+                    scrollbarThumb.setAttribute('aria-pressed', 'false');
                     document.removeEventListener('mousemove', onMouseMove);
                     document.removeEventListener('mouseup', onMouseUp);
                 }
@@ -764,8 +849,8 @@
             
             // Click on track to jump
             scrollbarTrack.addEventListener('click', (e) => {
-                // Only process clicks on the track itself, not the thumb
-                if (e.target !== scrollbarTrack) return;
+                // Ensure click is on track and not on thumb
+                if (e.target !== scrollbarTrack || scrollbarThumb.contains(e.target)) return;
                 
                 const rect = scrollbarTrack.getBoundingClientRect();
                 const clickX = e.clientX - rect.left;
@@ -783,8 +868,29 @@
             // Initialize position
             syncThumbPosition();
             
-            // Handle resize
-            window.addEventListener('resize', syncThumbPosition);
+            // Handle resize with cleanup using AbortController
+            resizeController = new AbortController();
+            
+            const resizeHandler = () => {
+                THUMB_WIDTH = calculateThumbWidth();
+                scrollbarThumb.style.width = THUMB_WIDTH + 'px';
+                syncThumbPosition();
+            };
+            
+            window.addEventListener('resize', resizeHandler, { 
+                signal: resizeController.signal 
+            });
+            
+            // Cleanup function for when component is destroyed
+            window.cleanupScrollbar = () => {
+                if (resizeController) {
+                    resizeController.abort();
+                }
+                if (scrollRafId) {
+                    cancelAnimationFrame(scrollRafId);
+                }
+                scrollview.removeEventListener('scroll', scrollHandler);
+            };
         }
     </script>
 </body>

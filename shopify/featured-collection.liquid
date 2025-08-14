@@ -1,0 +1,482 @@
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          'poppins': ['Poppins', 'sans-serif'],
+          'source': ['"Source Serif 4"', 'serif'],
+          'bebas': ['"Bebas Neue"', 'cursive']
+        }
+      }
+    }
+  }
+</script>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&family=Poppins:wght@400;600&family=Source+Serif+4:wght@900&display=swap" rel="stylesheet">
+
+<!-- Featured Collection Script -->
+<script
+  src="{{ 'featured-collection.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{% liquid
+  assign desktop_scroll = section.settings.enable_desktop_scroll
+  assign mobile_grid = section.settings.enable_mobile_grid
+%}
+
+<featured-collection
+  id="featured-collection-{{ section.id }}"
+  class="featured-collection font-poppins"
+  data-section-id="{{ section.id }}"
+  {{ section.shopify_attributes }}
+>
+  <!-- Desktop View -->
+  <main class="hidden md:block">
+    <header class="flex justify-between items-center mb-8 px-32 mt-[60px]">
+      <h1 class="text-[40px] font-source font-black">{{ section.settings.title }}</h1>
+      {% if section.settings.show_view_all %}
+        <nav>
+          <a href="{{ section.settings.view_all_url }}" class="text-gray-600 hover:text-gray-900 flex items-center gap-2 font-semibold text-sm tracking-[0.03em]">
+            {{ section.settings.view_all_text }}
+            <svg class="w-4 h-4 inline-block" fill="none" stroke="currentColor" viewBox="0 0 16 12" aria-hidden="true">
+              <path d="M1 6H11M11 6L6 1M11 6L6 11" stroke="#5C553A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </nav>
+      {% endif %}
+    </header>
+
+    <!-- Desktop Scrollview Container -->
+    <section class="relative pl-32" aria-label="Product carousel">
+      <div class="flex flex-nowrap overflow-x-auto custom-scrollbar" id="desktop-scrollview-{{ section.id }}" style="overscroll-behavior-x: contain;" role="region" aria-label="Scrollable product list">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'product' %}
+              {% assign product = block.settings.product %}
+              <article class="flex-none w-[355px] {% if forloop.first %}mr-4{% else %}px-2{% endif %}" {{ block.shopify_attributes }}>
+                <a href="{{ product.url | default: '#' }}" class="block rounded-[10px] overflow-hidden hover:opacity-90 transition-opacity">
+                  <figure class="relative">
+                    {% if block.settings.show_badge and block.settings.badge_text != blank %}
+                      <span class="absolute top-2 left-2 text-xs font-bold px-3 py-1 rounded-full font-bebas border border-black bg-white tracking-[0.06em]" aria-label="{{ block.settings.badge_text }} badge">
+                        {{ block.settings.badge_text }}
+                      </span>
+                    {% endif %}
+                    {% if product.compare_at_price > product.price and block.settings.show_discount_badge %}
+                      {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round %}
+                      <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bebas px-3 py-1 rounded-full tracking-[0.06em] border border-black" aria-label="Save {{ discount }}%">
+                        SAVE {{ discount }}%
+                      </span>
+                    {% elsif block.settings.show_discount_badge and block.settings.custom_discount_text != blank %}
+                      <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-xs font-bebas px-3 py-1 rounded-full tracking-[0.06em] border border-black" aria-label="{{ block.settings.custom_discount_text }}">
+                        {{ block.settings.custom_discount_text }}
+                      </span>
+                    {% endif %}
+                    {% if product.featured_image %}
+                      {% assign product_alt = product.title | escape %}
+                      {{ product.featured_image | image_url: width: 710 | image_tag: alt: product_alt, class: 'w-[355px] h-[355px] object-cover rounded-[10px]', loading: 'lazy' }}
+                    {% elsif product == blank %}
+                      {{ 'product-1' | placeholder_svg_tag: 'w-[355px] h-[355px] object-cover rounded-[10px] placeholder-svg' }}
+                    {% else %}
+                      {% assign product_alt = product.title | escape %}
+                      {{ product | image_url: width: 710 | image_tag: alt: product_alt, class: 'w-[355px] h-[355px] object-cover rounded-[10px]', loading: 'lazy' }}
+                    {% endif %}
+                  </figure>
+                  <div class="p-4">
+                    <h3 class="font-bebas text-lg mb-2 tracking-wide uppercase">{{ product.title | default: 'Product Title' }}</h3>
+                    {% if block.settings.show_rating %}
+                      {% assign rating_value = product.metafields.reviews.rating.value | default: block.settings.default_rating %}
+                      {% assign review_count = product.metafields.reviews.count.value | default: block.settings.default_review_count %}
+                      <div class="flex items-center gap-1 mb-2" role="img" aria-label="{{ rating_value }} out of 5 stars rating">
+                        <div class="flex gap-0.5" aria-hidden="true">
+                          {% for i in (1..5) %}
+                            {% if i <= rating_value %}
+                              <img src="{{ 'star-01.svg' | asset_url }}" alt="" class="w-[9px] h-[9px]">
+                            {% else %}
+                              <img src="{{ 'star-01.svg' | asset_url }}" alt="" class="w-[9px] h-[9px] opacity-50">
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+                        <span class="text-[11px] text-gray-500">{{ review_count }} Reviews</span>
+                      </div>
+                    {% endif %}
+                    <p class="font-bold">{{ product.price | money | default: '$0.00' }}</p>
+                  </div>
+                </a>
+              </article>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Custom Scrollbar -->
+    {% if desktop_scroll %}
+      <nav class="px-32 mt-12" aria-label="navigation">
+        <div class="h-1 bg-gray-200 relative rounded-full group scrollbar-track" role="scrollbar" aria-controls="desktop-scrollview-{{ section.id }}" aria-orientation="horizontal">
+          <div id="scrollbar-thumb-{{ section.id }}" class="h-1 bg-black absolute top-1/2 left-0 rounded-full cursor-pointer -translate-y-1/2 translate-x-0 transition-[height] duration-200 ease-out scrollbar-thumb" role="slider" aria-label="Scroll position" tabindex="0"></div>
+        </div>
+      </nav>
+    {% endif %}
+  </main>
+
+  <!-- Mobile View -->
+  <main class="md:hidden container mx-auto px-6 py-8">
+    <header>
+      <h1 class="text-3xl font-source font-bold text-center mb-4">{{ section.settings.title }}</h1>
+    </header>
+
+    <section class="space-y-6" aria-label="Product grid">
+      <!-- Mobile Product Grid -->
+      <div class="grid grid-cols-2 gap-3" role="list">
+        {% assign displayed_products = 0 %}
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'product' %}
+              {% assign product = block.settings.product %}
+              {% assign displayed_products = displayed_products | plus: 1 %}
+              <article class="rounded-[10px] overflow-hidden w-full {% if displayed_products > 4 %}hidden opacity-0 transition-all duration-500 more-products{% endif %}" role="listitem" {{ block.shopify_attributes }}>
+                <a href="{{ product.url | default: '#' }}" class="block">
+                  <div class="relative">
+                  {% if block.settings.show_badge and block.settings.badge_text != blank %}
+                    <span class="absolute top-2 left-2 bg-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black" aria-label="{{ block.settings.badge_text }} badge">
+                      {{ block.settings.badge_text }}
+                    </span>
+                  {% endif %}
+                  {% if product.compare_at_price > product.price and block.settings.show_discount_badge %}
+                    {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price | round %}
+                    <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black" aria-label="Save {{ discount }}%">
+                      SAVE {{ discount }}%
+                    </span>
+                  {% elsif block.settings.show_discount_badge and block.settings.custom_discount_text != blank %}
+                    <span class="absolute top-2 right-2 bg-[#5C7962] text-white text-[8px] px-2 py-0.5 rounded-full font-bebas tracking-[0.04em] border border-black" aria-label="{{ block.settings.custom_discount_text }}">
+                      {{ block.settings.custom_discount_text }}
+                    </span>
+                  {% endif %}
+                  {% if product.featured_image %}
+                    {% assign product_alt = product.title | escape %}
+                    {{ product.featured_image | image_url: width: 400 | image_tag: alt: product_alt, class: 'w-full aspect-square object-cover rounded-[10px]', loading: 'lazy' }}
+                  {% elsif product == blank %}
+                    {{ 'product-1' | placeholder_svg_tag: 'w-full aspect-square object-cover rounded-[10px] placeholder-svg' }}
+                  {% else %}
+                    {% assign product_alt = product.title | escape %}
+                    {{ product | image_url: width: 400 | image_tag: alt: product_alt, class: 'w-full aspect-square object-cover rounded-[10px]', loading: 'lazy' }}
+                  {% endif %}
+                </div>
+                <div class="p-3">
+                  <h3 class="font-bebas text-sm mb-2 tracking-wide line-clamp-2 min-h-[2.5rem] uppercase">{{ product.title | default: 'Product Title' }}</h3>
+                  {% if block.settings.show_rating %}
+                    {% assign rating_value = product.metafields.reviews.rating.value | default: block.settings.default_rating %}
+                    {% assign review_count = product.metafields.reviews.count.value | default: block.settings.default_review_count %}
+                    <div class="flex items-center gap-1 mb-2" role="img" aria-label="{{ rating_value }} out of 5 stars rating">
+                      <div class="flex gap-0.5" aria-hidden="true">
+                        {% for i in (1..5) %}
+                          {% if i <= rating_value %}
+                            <img src="{{ 'star-01.svg' | asset_url }}" alt="" class="w-[9px] h-[9px]">
+                          {% else %}
+                            <img src="{{ 'star-01.svg' | asset_url }}" alt="" class="w-[9px] h-[9px] opacity-50">
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                      <span class="text-[11px] text-gray-500">{{ review_count }} Reviews</span>
+                    </div>
+                  {% endif %}
+                  <p class="font-bold text-lg">{{ product.price | money | default: '$0.00' }}</p>
+                </div>
+                </a>
+              </article>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Show More Button -->
+    {% if section.blocks.size > 4 %}
+      <button id="show-more-btn-{{ section.id }}" class="w-full bg-black text-white py-4 rounded-full font-semibold mt-3 hover:bg-gray-800 transition-all duration-300" aria-label="Load more products">
+        <span class="show-text">Show More</span>
+        <span class="hide-text hidden">Show Less</span>
+      </button>
+    {% endif %}
+  </main>
+</featured-collection>
+
+{% stylesheet %}
+  /* Custom scrollbar styles */
+  .custom-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scroll-behavior: auto; /* Not 'smooth' - handle smoothing in JS */
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+  
+  .scrollbar-thumb {
+    will-change: transform;
+    pointer-events: auto;
+  }
+  
+  .group:hover .scrollbar-thumb,
+  .scrollbar-thumb:active {
+    height: 8px;
+  }
+  
+  /* Product card hover effects */
+  .featured-collection a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .featured-collection article a:hover img {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+  }
+  
+  .featured-collection article img {
+    transition: transform 0.3s ease;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "tag": "section",
+  "class": "featured-collection-section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Best Sellers"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Text",
+      "default": "Shop All Best Sellers"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View All URL",
+      "default": "/collections/all"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_desktop_scroll",
+      "label": "Enable Desktop Scrollbar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mobile_grid",
+      "label": "Enable Mobile Grid View",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Section Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "Page width"
+        },
+        {
+          "value": "full-width",
+          "label": "Full width"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Top padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Bottom padding",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Top padding (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Bottom padding (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "header",
+          "content": "Badges"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_badge",
+          "label": "Show Badge",
+          "default": true
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "BEST SELLER",
+          "info": "Leave blank to hide badge"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_discount_badge",
+          "label": "Show Discount Badge",
+          "default": true,
+          "info": "Automatically calculates discount from compare at price"
+        },
+        {
+          "type": "text",
+          "id": "custom_discount_text",
+          "label": "Custom Discount Text (Optional)",
+          "info": "Overrides automatic discount calculation"
+        },
+        {
+          "type": "header",
+          "content": "Reviews"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show Rating",
+          "default": true,
+          "info": "Pulls from product metafields if available"
+        },
+        {
+          "type": "range",
+          "id": "default_rating",
+          "label": "Default Rating (if no metafield)",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "default_review_count",
+          "label": "Default Review Count (if no metafield)",
+          "default": "1,234"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "badge_text": "BEST SELLER",
+            "show_badge": true,
+            "show_discount_badge": false,
+            "show_rating": true,
+            "default_rating": 4,
+            "default_review_count": "1,234"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "badge_text": "BEST SELLER",
+            "show_badge": true,
+            "show_discount_badge": true,
+            "show_rating": true,
+            "default_rating": 5,
+            "default_review_count": "1,234"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "badge_text": "BEST SELLER",
+            "show_badge": true,
+            "show_discount_badge": false,
+            "show_rating": true,
+            "default_rating": 5,
+            "default_review_count": "1,234"
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "badge_text": "BEST SELLER",
+            "show_badge": true,
+            "show_discount_badge": false,
+            "show_rating": true,
+            "default_rating": 5,
+            "default_review_count": "1,234"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
